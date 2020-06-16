@@ -1,5 +1,3 @@
-// const canvas = document.getElementById('canvas');
-// const ctx = canvas.getContext('2d');
 
 class view {
     constructor(height, width, cells) {
@@ -53,22 +51,56 @@ class view {
         this.fillCells();
     }
 
+
+    snakeLength = 5;
+    arrX = [];
+    
     createSnake() {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;
-        this.ctx.fillRect(startPoint, startPoint, this.size, this.size);
         this.x = startPoint;
         this.y = startPoint;
+
+        
+        for (let i = this.snakeLength; i > 0; i--)
+            {
+                this.arrX.push(this.x - i * this.size);
+            }
+
+        for (let i = 0; i < this.arrX.length; i++)
+        {
+            this.ctx.fillRect(this.arrX[i], this.y, this.size, this.size);
+        }
     }
 
-    snakeLength = 1;
+  
 
     startMove() { 
+
+        this.x -= this.size
+
         setInterval(() => {
-            this.ctx.clearRect(this.x - (this.snakeLength - 1) * this.size, this.y, this.size, this.size);
-            this.ctx.strokeRect(this.x - (this.snakeLength - 1) * this.size, this.y, this.size, this.size);
+            console.log(this.arrX);
+            
+
+            
+            this.ctx.clearRect(this.arrX[0], this.y, this.size, this.size);
+            this.ctx.strokeRect(this.arrX[0], this.y, this.size, this.size);
+                
             this.x += this.size
+
+            if (this.x === this.width)
+            {
+                this.x = 0
+            }
+            
+            
+            this.arrX.push(this.x);
+            this.arrX.shift();
+            
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
-        }, 100);
+            
+
+        },100);
     }
 
 
@@ -79,8 +111,6 @@ snake.createField();
 snake.fillCells();
 snake.createSnake();
 snake.startMove();
-setTimeout(() => {
-    snake.snakeLength = 2;
-}, 300);
+
 
 
