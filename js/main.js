@@ -54,6 +54,7 @@ class view {
 
     snakeLength = 5;
     arrX = [];
+    arrY = [];
     
     createSnake() {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;
@@ -63,12 +64,14 @@ class view {
         
         for (let i = this.snakeLength; i > 0; i--)
             {
-                this.arrX.push(this.x - i * this.size);
+                this.arrX.push(this.x /*- i * this.size*/);
+                this.arrY.push(this.y - i * this.size);
             }
 
         for (let i = 0; i < this.arrX.length; i++)
         {
-            this.ctx.fillRect(this.arrX[i], this.y, this.size, this.size);
+            // this.ctx.fillRect(this.arrX[i], this.y, this.size, this.size);
+            this.ctx.fillRect(this.x, this.arrY[i], this.size, this.size);
         }
     }
 
@@ -76,31 +79,36 @@ class view {
 
     startMove() { 
 
-        this.x -= this.size
+        //this.x -= this.size
 
         setInterval(() => {
             console.log(this.arrX);
             
 
             
-            this.ctx.clearRect(this.arrX[0], this.y, this.size, this.size);
-            this.ctx.strokeRect(this.arrX[0], this.y, this.size, this.size);
+            this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
+            this.ctx.strokeRect(this.arrX[0], this.arrY[0], this.size, this.size);
                 
-            this.x += this.size
+            this.y += this.size
 
             if (this.x === this.width)
             {
                 this.x = 0
             }
+
+            if (this.y === this.height)
+            {
+                this.y = 0
+            }
             
             
-            this.arrX.push(this.x);
+            this.arrX.push(this.y);
             this.arrX.shift();
             
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
             
 
-        },100);
+        },1000);
     }
 
 
