@@ -80,6 +80,7 @@ class view {
     startMove() { 
 
         //this.x -= this.size
+        this.y -= this.size
 
         setInterval(() => {
             console.log(this.arrX);
@@ -102,7 +103,10 @@ class view {
             }
             
             
-            this.arrX.push(this.y);
+            this.arrY.push(this.y);
+            this.arrY.shift();
+
+            this.arrX.push(this.x);
             this.arrX.shift();
             
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
