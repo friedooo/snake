@@ -52,7 +52,7 @@ class view {
     }
 
 
-    snakeLength = 3;
+    snakeLength = 10;
     arrX = [];
     arrY = [];
     key = 68;
@@ -86,7 +86,7 @@ class view {
         //this.y -= this.size
 
         setInterval(() => {
-            console.log(this.arrX);
+            // console.log(this.arrX);
  
             this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
             this.ctx.strokeRect(this.arrX[0], this.arrY[0], this.size, this.size);
@@ -132,7 +132,7 @@ class view {
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
             
 
-        },300);
+        },1000);
     }
 
     keyHandler(){
@@ -156,18 +156,30 @@ class view {
                     this.key = e.which;
                 }
             }
-        });
-        
+        });  
+    }
+
+    addFood() {
+
     }
 
 
 }
 
-const snake = new view(600,600, 1024);
+const snake = new view(600,600, 2048);
 snake.createField();
-snake.fillCells();
-snake.createSnake();
-snake.startMove();
+// snake.fillCells();
+// snake.createSnake();
+// snake.startMove();
 
+
+// let img = new Image();
+// img.addEventListener('load', () => {
+//     snake.ctx.drawImage(img,100,100, 100, 100);
+    
+// })
+
+// img.src = '../src/img/burger.png';
+//     img.zIndex = 101;
 
 
