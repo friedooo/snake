@@ -52,10 +52,11 @@ class view {
     }
 
 
-    snakeLength = 10;
+    snakeLength = 1;
     arrX = [];
     arrY = [];
     key = 68;
+    eaten = false;
     
     createSnake() {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;
@@ -81,33 +82,42 @@ class view {
     startMove() { 
 
         this.keyHandler();
+        this.foodRandSpot();
 
         this.x -= this.size;
         //this.y -= this.size
 
+        console.log(this.width);
+
         setInterval(() => {
             // console.log(this.arrX);
- 
-            this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
-            this.ctx.strokeRect(this.arrX[0], this.arrY[0], this.size, this.size);
+           
+           if (this.eaten === false)
+           {
+                this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
+                this.ctx.strokeRect(this.arrX[0], this.arrY[0], this.size, this.size);
+           }
+           
+        
+            
                 
             switch(this.key) {
                 case 68: 
                     this.x += this.size;
-                    if (this.x === this.width)
+                    if (this.x >= this.width)
                         {
                             this.x = 0
                         }
                     break;
                 case 65:
-                        if (this.x === 0)
+                        if (this.x <= 0)
                             {
                                 this.x = this.width;
                             }
                     this.x -= this.size;
                     break;
                 case 87: 
-                    if (this.y === 0)
+                    if (this.y <= 0)
                         {
                             this.y = this.height;
                         }
@@ -115,7 +125,7 @@ class view {
                     break;
                 case 83:  
                 this.y += this.size;  
-                    if (this.y === this.height)
+                    if (this.y >= this.height)
                         {
                             this.y = 0
                         }
@@ -124,15 +134,29 @@ class view {
             
             
             this.arrY.push(this.y);
-            this.arrY.shift();
-
             this.arrX.push(this.x);
-            this.arrX.shift();
+
+            if (this.eaten === false)
+            {
+                this.arrY.shift();
+                this.arrX.shift();
+            }
+
+            
+            
             
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
             
 
-        },1000);
+            this.eaten = false;
+            if (this.x === this.foodSpotX && this.y === this.foodSpotY)
+            {
+                this.foodRandSpot();
+                this.eaten = true;
+                console.log(this.foodSpotX, this.foodSpotY);
+            }
+
+        },50);
     }
 
     keyHandler(){
@@ -159,18 +183,32 @@ class view {
         });  
     }
 
-    addFood() {
+    foodRandSpot(){
+        this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
+        this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+        while (this.arrX.indexOf(this.foodSpotX) != -1 || this.foodSpotX === this.width)
+        {
+            this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
+        }
 
+        while (this.arrY.indexOf(this.foodSpotY) != -1 || this.foodSpotY === this.height)
+        {
+            this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+        }
+
+        this.ctx.fillRect(this.foodSpotX, this.foodSpotY, this.size, this.size);
     }
 
 
 }
 
-const snake = new view(600,600, 2048);
+const snake = new view(600,600, 1024);
 snake.createField();
-// snake.fillCells();
-// snake.createSnake();
-// snake.startMove();
+snake.fillCells();
+snake.createSnake();
+snake.startMove();
+
+
 
 
 // let img = new Image();
