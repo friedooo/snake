@@ -28,6 +28,8 @@ export class Game {
         this.canvas.height = this.height;
         this.container.appendChild(this.canvas);
         this.ctx = this.canvas.getContext('2d');
+
+        
     }
 
     fillCells() {
@@ -40,6 +42,11 @@ export class Game {
                 this.ctx.strokeRect(i*this.size, j*this.size, this.size, this.size); 
             }
         }
+
+        // this.ctx.beginPath();
+        // this.ctx.moveTo(100, 100);
+        // this.ctx.quadraticCurveTo(100, 150, 200, 100);
+        // this.ctx.stroke();
     }
 
     clearBody()
