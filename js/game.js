@@ -63,7 +63,7 @@ export class Game {
     }
 
 
-    snakeLength = 50;
+    snakeLength = 25;
     arrX = [];
     arrY = [];
     key = 68;
@@ -158,7 +158,8 @@ export class Game {
             {
                 this.foodRandSpot();
                 this.eaten = true;
-               // console.log(this.foodSpotX, this.foodSpotY);
+               
+               console.log(this.foodSpotX, this.foodSpotY);
             }
 
         },50);
@@ -191,24 +192,22 @@ export class Game {
     foodRandSpot(){
         this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
         this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
-        while (this.arrX.indexOf(this.foodSpotX) != -1 || this.foodSpotX === this.width)
+        while ((this.arrX.indexOf(this.foodSpotX) != -1 &&
+        this.arrY.indexOf(this.foodSpotY) != -1) || 
+          this.foodSpotX === this.width || 
+          this.foodSpotY === this.height)
         {
             this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
-        }
-
-        while (this.arrY.indexOf(this.foodSpotY) != -1 || this.foodSpotY === this.height)
-        {
             this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
         }
-
-        
-        // let img = new Image();
-        // img.addEventListener('load', () => {
-        //     this.ctx.drawImage(img, this.foodSpotX, this.foodSpotY, this.size, this.size);  
-        // })
-
-        // img.src = this.IMAGES[Math.round(Math.random() * (this.IMAGES.length - 1))];
-        this.ctx.fillRect(this.foodSpotX, this.foodSpotY, this.size, this.size);
+   
+        let img = new Image();
+        img.addEventListener('load', () => {
+            this.ctx.drawImage(img, this.foodSpotX, this.foodSpotY, this.size, this.size);  
+        })
+        img.src = this.IMAGES[Math.round(Math.random() * (this.IMAGES.length - 1))];
+        img.zIndex = 101;
+        //this.ctx.fillRect(this.foodSpotX, this.foodSpotY, this.size, this.size);
 
        
     }
