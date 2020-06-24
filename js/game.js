@@ -169,7 +169,7 @@ export class Game {
                console.log(this.foodSpotX, this.foodSpotY);
             }
 
-        },50);
+        },5000);
     }
 
     keyHandler(){
