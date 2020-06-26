@@ -1,7 +1,11 @@
-const MAINMENU = ['start game', 'continue', 'mods', 'settings', 'hightscores']
+export {DATA, Menu};
+import {Game} from './game.js'
+
+
+const DATA = {'mainMenu' :['start game', 'continue', 'mods', 'settings', 'hightscores']};
+
 
 class Menu {
-
     createMenu(items) {
         document.querySelector('body').innerHTML = '';
         let container = document.createElement('div');
@@ -14,9 +18,20 @@ class Menu {
             item.innerHTML = items[i].toUpperCase();
             item.style.height = 100 / items.length + '%';
             container.appendChild(item);
+
+            if (items[i] === 'start game')
+            {
+                item.addEventListener('click', startGame);
+            }
         }
     }
 }
 
-let menu = new Menu();
-menu.createMenu(MAINMENU);
+function startGame() {
+    const snake = new Game(600,600, 1024);
+    snake.startGame();
+}
+
+
+
+

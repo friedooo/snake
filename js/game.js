@@ -220,6 +220,7 @@ export class Game {
     }
 
     startGame() {
+        document.querySelector('body').innerHTML = '';
         this.createField();
         this.fillCells();
         this.createSnake();
