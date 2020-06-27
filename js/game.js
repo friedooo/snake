@@ -29,6 +29,12 @@ export class Game {
 
     createField(){
 
+        this.backBtn = document.createElement('div');
+        this.backBtn.classList.add('back-btn');
+        this.backBtn.innerHTML = '123';
+        document.querySelector('body').appendChild(this.backBtn);
+
+
         this.counter = document.createElement('div');
         this.counter.classList.add('counter');
         this.counter.innerHTML = 0;
@@ -193,7 +199,7 @@ export class Game {
                 if (this.count != 0 && this.count % this.speedChangeStep === 0)
                 {
                     this.speerProgress();
-                    alert(this.speed);
+                    //alert(this.speed);
                 }
                
                console.log(this.foodSpotX, this.foodSpotY);
