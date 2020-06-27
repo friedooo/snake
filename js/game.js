@@ -21,6 +21,9 @@ export class Game {
         this.arrY = [];
         this.key = 68;
         this.eaten = false;
+        this.speed = 40;
+        this.speedFactor = 3;
+
     }
 
     createField(){
@@ -91,7 +94,7 @@ export class Game {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;
         this.x = startPoint;
         this.y = startPoint;
-
+        
         
         for (let i = this.snakeLength; i > 0; i--)
             {
@@ -112,8 +115,8 @@ export class Game {
 
         this.keyHandler();
         this.foodRandSpot();
-
         this.x -= this.size;
+       
         //this.y -= this.size
 
         //console.log(this.width);
@@ -179,11 +182,16 @@ export class Game {
 
                 this.count += 1;
                 this.counter.innerHTML = this.count;
+
+                if (this.count != 0 && this.count % 2 === 0)
+                {
+                    this.speerProgress();
+                }
                
                console.log(this.foodSpotX, this.foodSpotY);
             }
 
-        },100);
+        },this.speed);
     }
 
     keyHandler(){
@@ -231,6 +239,11 @@ export class Game {
         //this.ctx.fillRect(this.foodSpotX, this.foodSpotY, this.size, this.size);
 
        
+    }
+
+    speerProgress() {
+        this.speed = this.speed - this.speedFactor*this.count;
+        this.startMove();
     }
 
     startGame() {
