@@ -21,7 +21,8 @@ export class Game {
         this.arrY = [];
         this.key = 68;
         this.eaten = false;
-        this.speed = 150;
+        this.speedChangeStep = 2;
+        this.speed = 200;
         this.speedFactor = 3;
 
     }
@@ -188,9 +189,10 @@ export class Game {
                 this.count += 1;
                 this.counter.innerHTML = this.count;
 
-                if (this.count != 0 && this.count % 2 === 0)
+                if (this.count != 0 && this.count % this.speedChangeStep === 0)
                 {
                     this.speerProgress();
+                    alert(this.speed);
                 }
                
                console.log(this.foodSpotX, this.foodSpotY);
@@ -249,8 +251,7 @@ export class Game {
     speerProgress() {
         this.speed = this.speed - this.speedFactor*this.count;
         clearInterval(this.interval);
-        this.movement();
-        
+        this.movement();  
     }
 
     startGame() {
