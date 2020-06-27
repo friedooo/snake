@@ -14,13 +14,28 @@ export class Game {
             '../src/img/ice-cream.svg',
             '../src/img/meat.svg',
             '../src/img/chocolate.svg'
-        ]
+        ];
+        this.count = 0;
+        this.snakeLength = 10;
+        this.arrX = [];
+        this.arrY = [];
+        this.key = 68;
+        this.eaten = false;
     }
 
     createField(){
+
+        this.counter = document.createElement('div');
+        this.counter.classList.add('counter');
+        this.counter.innerHTML = 0;
+        document.querySelector('body').appendChild(this.counter);
+
+
+
         this.container = document.createElement('div');
         this.container.classList.add('container');
         document.querySelector('body').appendChild(this.container);
+
 
         this.canvas = document.createElement('canvas');
         this.canvas.classList.add('canvas')
@@ -70,11 +85,7 @@ export class Game {
     }
 
 
-    snakeLength = 25;
-    arrX = [];
-    arrY = [];
-    key = 68;
-    eaten = false;
+    
     
     createSnake() {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;
@@ -161,15 +172,18 @@ export class Game {
             
 
             this.eaten = false;
-            if (this.x === this.foodSpotX && this.y === this.foodSpotY)
+            if (this.x === this.foodSpotX &&  this.y === this.foodSpotY)
             {
                 this.foodRandSpot();
                 this.eaten = true;
+
+                this.count += 1;
+                this.counter.innerHTML = this.count;
                
                console.log(this.foodSpotX, this.foodSpotY);
             }
 
-        },5000);
+        },100);
     }
 
     keyHandler(){
