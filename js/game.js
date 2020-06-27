@@ -21,9 +21,9 @@ export class Game {
         this.arrY = [];
         this.key = 68;
         this.eaten = false;
-        this.speedChangeStep = 2;
-        this.speed = 200;
-        this.speedFactor = 3;
+        this.speedChangeStep = 5;
+        this.speed = 150;
+        this.speedFactor = 5000;
 
     }
 
@@ -249,7 +249,7 @@ export class Game {
     }
 
     speerProgress() {
-        this.speed = this.speed - this.speedFactor*this.count;
+        this.speed = this.speed - Math.pow(this.speedFactor/this.count, 1/3);
         clearInterval(this.interval);
         this.movement();  
     }
