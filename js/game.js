@@ -130,6 +130,7 @@ export class Game {
         this.interval = setInterval(() => {
             //console.log(this.arrX);
            
+          
            if (this.eaten === false)
            {
                 this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
@@ -228,15 +229,16 @@ export class Game {
     foodRandSpot(){
         this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
         this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
-        while ((this.arrX.indexOf(this.foodSpotX) != -1 &&
-        this.arrY.indexOf(this.foodSpotY) != -1) || 
-          this.foodSpotX === this.width || 
-          this.foodSpotY === this.height)
+        for (let i = 0; i < this.arrX.length; i++)
         {
-            this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
-            this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+            if (this.arrX[i] === this.foodSpotX &&
+            this.arrY[i] === this.foodSpotY)
+            {
+                this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
+                this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+            }
         }
-   
+    
         let img = new Image();
         img.addEventListener('load', () => {
             this.ctx.drawImage(img, this.foodSpotX, this.foodSpotY, this.size, this.size);  
