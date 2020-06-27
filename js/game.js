@@ -29,9 +29,9 @@ export class Game {
 
     createField(){
 
-        this.backBtn = document.createElement('div');
+        this.backBtn = document.createElement('span');
         this.backBtn.classList.add('back-btn');
-        this.backBtn.innerHTML = '123';
+        this.backBtn.innerHTML = 'Back to menu';
         document.querySelector('body').appendChild(this.backBtn);
 
 

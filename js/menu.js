@@ -8,16 +8,13 @@ const DATA = {'mainMenu' :
 
 class Menu {
 
-    constructor() {
-        this.container = document.createElement('div');
-        this.container.classList.add('menu-container');
-        this.events = {'start game': this.startGameFunc};
-    }
 
     createMenu(items) {
         document.querySelector('body').innerHTML = '';
         
-        
+        this.container = document.createElement('div');
+        this.container.classList.add('menu-container');
+
         document.querySelector('body').appendChild(this.container);
         for (let i = 0; i < items.length; i++)
         {
@@ -30,19 +27,24 @@ class Menu {
     }
 
     menuEventHandler() {
+  
         window.addEventListener('click', (e) => {
-            if (this.events[e.target.innerHTML.toLowerCase()] != undefined)
+            if (e.target.innerHTML.toLowerCase() === 'start game')
             {
-                this.events[e.target.innerHTML.toLowerCase()]();
+                this.startGameFunc();
             }
         }); 
     }
 
+
     startGameFunc() {
         const snake = new Game(600,600, 1024);
         snake.startGame();
-    }
-    
+        snake.backBtn.addEventListener('click', () => {
+            this.createMenu(DATA.mainMenu);
+        })
+    } 
+
 }
 
 
