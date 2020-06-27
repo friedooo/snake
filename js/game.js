@@ -21,7 +21,7 @@ export class Game {
         this.arrY = [];
         this.key = 68;
         this.eaten = false;
-        this.speed = 40;
+        this.speed = 150;
         this.speedFactor = 3;
 
     }
@@ -121,7 +121,12 @@ export class Game {
 
         //console.log(this.width);
 
-        setInterval(() => {
+        this.movement();
+
+    }
+
+    movement() {
+        this.interval = setInterval(() => {
             //console.log(this.arrX);
            
            if (this.eaten === false)
@@ -191,7 +196,7 @@ export class Game {
                console.log(this.foodSpotX, this.foodSpotY);
             }
 
-        },this.speed);
+        }, this.speed);   
     }
 
     keyHandler(){
@@ -243,7 +248,9 @@ export class Game {
 
     speerProgress() {
         this.speed = this.speed - this.speedFactor*this.count;
-        this.startMove();
+        clearInterval(this.interval);
+        this.movement();
+        
     }
 
     startGame() {
