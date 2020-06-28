@@ -16,7 +16,7 @@ export class Game {
             '../src/img/chocolate.svg'
         ];
         this.count = 0;
-        this.snakeLength = 10;
+        this.snakeLength = 100;
         this.arrX = [];
         this.arrY = [];
         this.key = 68;
@@ -211,6 +211,7 @@ export class Game {
     keyHandler(){
         const vertical = [87, 83];
         const horizontal = [68, 65];
+    
         window.addEventListener('keydown', (e) => {
             if ((this.key === 87 || this.key === 83) && 
             this.arrY[this.arrY.length - 1] != this.arrY[this.arrY.length - 2])
@@ -232,13 +233,16 @@ export class Game {
         });  
     }
 
+
     foodRandSpot(){
         this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
         this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
         for (let i = 0; i < this.arrX.length; i++)
         {
-            if (this.arrX[i] === this.foodSpotX &&
-            this.arrY[i] === this.foodSpotY)
+            if ((this.arrX[i] === this.foodSpotX &&
+            this.arrY[i] === this.foodSpotY) || 
+            this.foodSpotX === this.size || 
+            this.foodSpotY === this.size)
             {
                 this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
                 this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
