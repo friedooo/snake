@@ -201,7 +201,7 @@ export class Game {
 
                 if (this.count != 0 && this.count % this.speedChangeStep === 0)
                 {
-                    this.speerProgress();
+                    this.speedProgress();
                     //alert(this.speed);
                 }
                
@@ -263,7 +263,7 @@ export class Game {
        
     }
 
-    speerProgress() {
+    speedProgress() {
         this.speed = this.speed - Math.pow(this.speedFactor/this.count, 1/3);
         clearInterval(this.interval);
         this.movement();  
