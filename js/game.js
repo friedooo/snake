@@ -13,10 +13,13 @@ export class Game {
             '../src/img/bread.svg',
             '../src/img/ice-cream.svg',
             '../src/img/meat.svg',
-            '../src/img/chocolate.svg'
+            '../src/img/chocolate.svg',
+            '../src/img/tomato.svg',
+            '../src/img/tea.svg',
+            '../src/img/carrot.svg'
         ];
         this.count = 0;
-        this.snakeLength = 100;
+        this.snakeLength = 5;
         this.arrX = [];
         this.arrY = [];
         this.key = 68;
