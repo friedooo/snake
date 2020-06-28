@@ -138,14 +138,14 @@ export class Game {
     movement() {
         this.interval = setInterval(() => {
             //console.log(this.arrX);
-           
+            
           
            if (this.eaten === false)
            {
                 this.ctx.clearRect(this.arrX[0], this.arrY[0], this.size, this.size);
                 this.ctx.strokeRect(this.arrX[0], this.arrY[0], this.size, this.size);
            }
-     
+           
             switch(this.key) {
                 case 68: 
                     this.x += this.size;
@@ -176,17 +176,24 @@ export class Game {
                         }
                     break;
             }
+
             
             
-            this.arrY.push(this.y);
-            this.arrX.push(this.x);
+            
+
+            
 
             if (this.eaten === false)
             {
                 this.arrY.shift();
                 this.arrX.shift();
             }
+
+            this.isCrash();
    
+            this.arrY.push(this.y);
+            this.arrX.push(this.x);
+
             this.ctx.fillRect(this.x, this.y, this.size, this.size);
             
 
@@ -267,6 +274,16 @@ export class Game {
         this.speed = this.speed - Math.pow(this.speedFactor/this.count, 1/3);
         clearInterval(this.interval);
         this.movement();  
+    }
+
+    isCrash() {
+        for (let i = 0; i < this.arrX.length; i++)
+        {
+            if (this.arrX[i] === this.x && this.arrY[i] === this.y)
+            {
+                alert(1);
+            }
+        }
     }
 
     startGame() {
