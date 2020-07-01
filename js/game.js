@@ -27,11 +27,6 @@ export class Game {
         this.speedChangeStep = 5;
         this.speed = 150;
         this.speedFactor = 5000;
-        this.statistic = {
-            'count' : this.count,
-            'speed': this.speed,
-            'length': this.snakeLength,
-            'time' : 0};
 
     }
 
@@ -204,6 +199,8 @@ export class Game {
                 this.foodRandSpot();
                 this.eaten = true;
 
+                this.snakeLength += 1;
+
                 this.count += 1;
                 this.counter.innerHTML = this.count;
 
@@ -294,6 +291,12 @@ export class Game {
     }
 
     gameOver() {
+        this.statistics = {
+            'count' : this.count,
+            'speed': this.speed,
+            'length': this.snakeLength,
+            'time' : 0};
+
         this.clearBody();
 
         this.container = document.createElement('div');
@@ -314,18 +317,21 @@ export class Game {
     }
 
     fillResultScreen() {
-        for (let i = 0; i < 4; i++)
+        for (let key in this.statistics)
         {
                 let elem = document.createElement('div');
                 elem.classList.add('result-item');
                 elem.style.height = '22%';
                 this.resultScreen.appendChild(elem);
-                for (let j = 0; j < 2; j++)
-                {
-                    let innerElem = document.createElement('div');
-                    innerElem.innerHTML = '123';
-                    elem.appendChild(innerElem);
-                }   
+
+                let name = document.createElement('div');
+                name.innerHTML = key;
+                elem.appendChild(name);
+
+                let value = document.createElement('div');
+                value.innerHTML = this.statistics[key];
+                elem.appendChild(value);
+                
         }
 
         let menuBtnContainer = document.createElement('div');

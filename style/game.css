@@ -68,6 +68,11 @@
     justify-content: space-between;  
 }
 
+.result-item > div {
+    font-family: "digital-7 (italic)";
+    font-size: 3rem;
+}
+
 :root{
     --height: 3em;
     --bgr: rgb(64, 64, 64);
