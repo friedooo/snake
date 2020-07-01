@@ -95,7 +95,7 @@
     height: calc(1 * var(--height));
     width: calc(2 * 0.866 * var(--height));
     box-shadow: 0.5em 0.5em 0.5em lightgrey;
-    transition: box-shadow ease 0.2s;
+    transition: box-shadow ease 0.1s;
     z-index: 9;
 }
 
@@ -103,7 +103,7 @@
 .toMenu:before{
     content: '';
     position: relative;
-    transition: all ease-in-out 0.35s;
+    transition: all ease-in-out 0.1s;
     top: 0px; left: 0px;
     height: calc(1 * var(--height));
     width: calc(2 * 0.866 * var(--height));
@@ -113,7 +113,7 @@
 }
 
 .toMenu:hover{
-    transition: box-shadow linear 0.2s;
+    transition: box-shadow linear 0.1s;
     box-shadow: none;
 }
 .toMenu:after{
