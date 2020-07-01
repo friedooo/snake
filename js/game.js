@@ -27,6 +27,11 @@ export class Game {
         this.speedChangeStep = 5;
         this.speed = 150;
         this.speedFactor = 5000;
+        this.statistic = {
+            'count' : this.count,
+            'speed': this.speed,
+            'length': this.snakeLength,
+            'time' : 0};
 
     }
 
@@ -177,11 +182,7 @@ export class Game {
                     break;
             }
 
-            
-            
-            
 
-            
 
             if (this.eaten === false)
             {
@@ -251,11 +252,17 @@ export class Game {
         {
             if ((this.arrX[i] === this.foodSpotX &&
             this.arrY[i] === this.foodSpotY) || 
-            this.foodSpotX === this.size || 
-            this.foodSpotY === this.size)
+            this.foodSpotX === this.width || 
+            this.foodSpotY === this.height)
             {
-                this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
-                this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+                while ((this.arrX[i] === this.foodSpotX &&
+                    this.arrY[i] === this.foodSpotY) || 
+                    this.foodSpotX === this.width || 
+                    this.foodSpotY === this.height)
+                    {
+                        this.foodSpotX = Math.round(Math.random()*this.width/this.size)*this.size;
+                        this.foodSpotY = Math.round(Math.random()*this.height/this.size)*this.size;
+                    }
             }
         }
     
@@ -281,13 +288,58 @@ export class Game {
         {
             if (this.arrX[i] === this.x && this.arrY[i] === this.y)
             {
-                alert(1);
+                this.gameOver();
             }
         }
     }
 
+    gameOver() {
+        this.clearBody();
+
+        this.container = document.createElement('div');
+        this.container.classList.add('container');
+        document.querySelector('body').appendChild(this.container);
+
+        this.createResultScreen();
+    }
+
+    createResultScreen() {
+        this.resultScreen = document.createElement('div');
+        this.resultScreen.classList.add('result-screen');
+        this.resultScreen.style.width = this.width;
+        this.resultScreen.style.height = this.height;
+        this.container.appendChild(this.resultScreen);
+
+        this.fillResultScreen();
+    }
+
+    fillResultScreen() {
+        for (let i = 0; i < 4; i++)
+        {
+                let elem = document.createElement('div');
+                elem.classList.add('result-item');
+                elem.style.height = '22%';
+                this.resultScreen.appendChild(elem);
+                for (let j = 0; j < 2; j++)
+                {
+                    let innerElem = document.createElement('div');
+                    innerElem.innerHTML = '123';
+                    elem.appendChild(innerElem);
+                }   
+        }
+
+        let menuBtnContainer = document.createElement('div');
+        menuBtnContainer.classList.add('menu-btn-container');
+        this.resultScreen.appendChild(menuBtnContainer);
+
+        let toMenuBtn = document.createElement('div');
+        toMenuBtn.innerHTML = 'Menu';
+        toMenuBtn.classList.add('toMenu');
+        menuBtnContainer.appendChild(toMenuBtn);
+    }
+
     startGame() {
-        document.querySelector('body').innerHTML = '';
+        this.clearBody();
         this.createField();
         this.fillCells();
         this.createSnake();
