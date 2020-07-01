@@ -1,3 +1,5 @@
+import {DATA, Menu} from './menu.js';
+
 export class Game {
     constructor(height, width, cells) {
         this.height = height;
@@ -342,6 +344,11 @@ export class Game {
         toMenuBtn.innerHTML = 'Menu';
         toMenuBtn.classList.add('toMenu');
         menuBtnContainer.appendChild(toMenuBtn);
+
+        toMenuBtn.addEventListener('click', () => {
+            let menu = new Menu();
+            menu.createMenu(DATA.mainMenu);
+        });
     }
 
     startGame() {
