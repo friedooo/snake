@@ -317,8 +317,13 @@ export class Game {
     gameOver() {
 
         this.container.innerHTML = '';
+        this.container.style.display = 'none';
+
         this.counter.innerHTML = '';
+        this.counter.style.display = 'none';
+
         this.backBtn.innerHTML = '';
+        this.backBtn.style.display = 'none';
 
         this.statistics = {
             'count' : this.count,
