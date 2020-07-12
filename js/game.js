@@ -106,7 +106,7 @@ export class Game {
     }
 
     changeParams(params) {
-        this.clearBody();
+        //this.clearBody();
         for (let param of params)
         {
             if (param.key === 'width')
@@ -315,69 +315,48 @@ export class Game {
     }
 
     gameOver() {
+
+        this.container.innerHTML = '';
+        this.counter.innerHTML = '';
+        this.backBtn.innerHTML = '';
+
         this.statistics = {
             'count' : this.count,
             'speed': this.speed,
             'length': this.snakeLength,
             'time' : 0};
 
-        this.clearBody();
-
-
-        $('<div>',{
-            class: 'container',
-        }).appendTo('body');
-
-        this.container = $('.container')[0];
-
-        this.createResultScreen();
-    }
-
-    createResultScreen() {
-        this.resultScreen = document.createElement('div');
-        this.resultScreen.classList.add('result-screen');
-        this.resultScreen.style.width = this.width;
-        this.resultScreen.style.height = this.height;
-        this.container.appendChild(this.resultScreen);
-
         this.fillResultScreen();
     }
 
+
     fillResultScreen() {
+
+        document.querySelector('.menu-container').style.display = 'block';
+        this.resultScreen = document.querySelector('.result-screen');
+        this.resultScreen.style.display = 'block';
+
+
+        //это конечно супер коряво
+
         for (let key in this.statistics)
         {
-                let elem = document.createElement('div');
-                elem.classList.add('result-item');
-                elem.style.height = '22%';
-                this.resultScreen.appendChild(elem);
+                document.querySelectorAll('.result-item').forEach((e) => {
 
-                let name = document.createElement('div');
-                name.innerHTML = key;
-                elem.appendChild(name);
-
-                let value = document.createElement('div');
-                value.innerHTML = this.statistics[key];
-                elem.appendChild(value);
-                
+                    if (e.children[0].innerHTML === key)
+                        e.children[1].innerHTML = this.statistics[key];
+                }); 
         }
 
-        let menuBtnContainer = document.createElement('div');
-        menuBtnContainer.classList.add('menu-btn-container');
-        this.resultScreen.appendChild(menuBtnContainer);
-
-        let toMenuBtn = document.createElement('div');
-        toMenuBtn.innerHTML = 'Menu';
-        toMenuBtn.classList.add('toMenu');
-        menuBtnContainer.appendChild(toMenuBtn);
-
-        toMenuBtn.addEventListener('click', () => {
-            let menu = new Menu();
-            menu.createMenu(DATA.mainMenu);
-        });
+        document.querySelectorAll('.menu-item').forEach((e) => {
+            e.style.display = 'none';
+        })
     }
 
     startGame() {
-        this.clearBody();
+        //this.clearBody();
+        document.querySelector('.menu-container').style.display = 'none';
+
         this.createField();
         this.fillCells();
         this.createSnake();

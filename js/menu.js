@@ -46,6 +46,58 @@ class Menu {
         })
     } 
 
+    createResultScreen() {
+        this.resultScreen = document.createElement('div');
+        this.resultScreen.classList.add('result-screen');
+        this.container.appendChild(this.resultScreen);
+
+        this.resultScreen.style.display = 'none';
+
+        let menuBtnContainer = document.createElement('div');
+        menuBtnContainer.classList.add('menu-btn-container');
+        this.resultScreen.appendChild(menuBtnContainer);
+
+        let toMenuBtn = document.createElement('div');
+        toMenuBtn.innerHTML = 'Menu';
+        toMenuBtn.classList.add('toMenu');
+        menuBtnContainer.appendChild(toMenuBtn);
+
+        
+        this.zeroStatistics = {
+            'count' : 0,
+            'speed': 0,
+            'length': 0,
+            'time' : 0};
+
+        for (let key in this.zeroStatistics)
+        {
+                let elem = document.createElement('div');
+                elem.classList.add('result-item');
+                elem.style.height = '22%';
+                this.resultScreen.appendChild(elem);
+
+                let name = document.createElement('div');
+                name.innerHTML = key;
+                elem.appendChild(name);
+
+                let value = document.createElement('div');
+                value.innerHTML = this.zeroStatistics[key];
+                elem.appendChild(value);       
+        }
+        
+
+        toMenuBtn.addEventListener('click', () => {
+            this.resultScreen.style.display = 'none';
+            document.querySelectorAll('.menu-item').forEach((e) => {
+                e.style.display = 'flex';
+            })
+
+            document.querySelector('body').removeChild(document.querySelector('.container'));
+            document.querySelector('body').removeChild(document.querySelector('.back-btn'));
+            document.querySelector('body').removeChild(document.querySelector('.counter'));
+        });
+    }
+
 }
 
 
