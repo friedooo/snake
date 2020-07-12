@@ -50,6 +50,26 @@ body {
     font-size: 1.5rem;
 }
 
+
+.back-btn {
+    position: absolute;
+    top: 1%;
+
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 24px;
+    color: rgb(29, 29, 59);
+
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    color: rgb(224, 61, 88)
+}
+
+
+
 .result-screen {
     position: fixed;
     height: 100%;

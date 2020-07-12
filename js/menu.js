@@ -25,6 +25,18 @@ class Menu {
             }).appendTo(this.container);
 
         }
+
+        this.createResultScreen();
+
+        
+        $('<span>', {
+            class: 'back-btn',
+            text: 'Back to menu',
+        }).appendTo('body');
+
+        this.backBtn = $('.back-btn')[0];
+
+        this.backBtn.style.display = 'none';
     }
 
     menuEventHandler() {
@@ -33,6 +45,8 @@ class Menu {
             if (e.target.innerHTML.toLowerCase() === 'start game')
             {
                 this.startGameFunc();
+
+                this.backBtn.style.display = 'inline';
             }
         }); 
     }
@@ -41,8 +55,10 @@ class Menu {
     startGameFunc() {
         const snake = new Game(600,600, 1024);
         snake.startGame();
-        snake.backBtn.addEventListener('click', () => {
+        this.backBtn.addEventListener('click', () => {
             this.createMenu(DATA.mainMenu);
+            this.clearGameField();
+            this.backBtn.style.display = 'none';
         })
     } 
 
@@ -87,15 +103,19 @@ class Menu {
         
 
         toMenuBtn.addEventListener('click', () => {
+            this.backBtn.style.display = 'none';
             this.resultScreen.style.display = 'none';
             document.querySelectorAll('.menu-item').forEach((e) => {
                 e.style.display = 'flex';
             })
 
-            document.querySelector('body').removeChild(document.querySelector('.container'));
-            document.querySelector('body').removeChild(document.querySelector('.back-btn'));
-            document.querySelector('body').removeChild(document.querySelector('.counter'));
-        });
+            this.clearGameField();
+       });
+    }
+
+    clearGameField() {
+        document.querySelector('body').removeChild(document.querySelector('.container'));
+        document.querySelector('body').removeChild(document.querySelector('.counter'));
     }
 
 }

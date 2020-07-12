@@ -34,14 +34,6 @@ export class Game {
 
     createField(){
 
-        $('<span>', {
-            class: 'back-btn',
-            text: 'Back to menu',
-        }).appendTo('body');
-
-        this.backBtn = $('.back-btn')[0];
-
-
         $('<div>', {
             class: 'counter',
             text: 0,
@@ -322,8 +314,6 @@ export class Game {
         this.counter.innerHTML = '';
         this.counter.style.display = 'none';
 
-        this.backBtn.innerHTML = '';
-        this.backBtn.style.display = 'none';
 
         this.statistics = {
             'count' : this.count,
