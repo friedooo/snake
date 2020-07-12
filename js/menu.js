@@ -10,10 +10,14 @@ class Menu {
 
 
     createMenu(items) {
-        document.querySelector('body').innerHTML = '';
+        $('body').html('');
         
-        this.container = document.createElement('div');
-        this.container.classList.add('menu-container');
+        $('body').append('<div class = "menu-container"></div>');
+        
+        // this.container = document.createElement('div');
+        // this.container.classList.add('menu-container');
+
+        this.container = $('.menu-container')[0];
 
         document.querySelector('body').appendChild(this.container);
         for (let i = 0; i < items.length; i++)

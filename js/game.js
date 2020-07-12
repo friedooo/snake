@@ -202,6 +202,7 @@ export class Game {
                 this.eaten = true;
 
                 this.snakeLength += 1;
+                console.log(this.count);
 
                 this.count += 1;
                 this.counter.innerHTML = this.count;
@@ -360,11 +361,3 @@ export class Game {
     }
 
 }
-
-
-
-
-
-
-
-
