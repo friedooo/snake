@@ -8,31 +8,37 @@ const DATA = {'mainMenu' :
 
 class Menu {
 
-
     createMenu(items) {
         $('body').html('');
         
-        $('body').append('<div class = "menu-container"></div>');
+        $('<div class = "menu-container"></div>').appendTo('body');
         
         // this.container = document.createElement('div');
         // this.container.classList.add('menu-container');
 
         this.container = $('.menu-container')[0];
 
-        document.querySelector('body').appendChild(this.container);
+        // document.querySelector('body').appendChild(this.container);
+
         for (let i = 0; i < items.length; i++)
         {
-            let item = document.createElement('div');
-            item.classList.add('menu-item');
-            item.innerHTML = items[i].toUpperCase();
-            item.style.height = 100 / items.length + '%';
-            this.container.appendChild(item);
+            $('<div>', {
+                class: 'menu-item',
+                height: 100/ items.length + '%',
+                text: items[i].toUpperCase(),
+            }).appendTo(this.container);
+
+            // let item = document.createElement('div');
+            // item.classList.add('menu-item');
+            // item.innerHTML = items[i].toUpperCase();
+            // item.style.height = 100 / items.length + '%';
+            // this.container.appendChild(item);
         }
     }
 
     menuEventHandler() {
   
-        window.addEventListener('click', (e) => {
+        $(window).on('click', (e) => {
             if (e.target.innerHTML.toLowerCase() === 'start game')
             {
                 this.startGameFunc();
