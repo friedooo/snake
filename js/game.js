@@ -34,30 +34,51 @@ export class Game {
 
     createField(){
 
-        this.backBtn = document.createElement('span');
-        this.backBtn.classList.add('back-btn');
-        this.backBtn.innerHTML = 'Back to menu';
-        document.querySelector('body').appendChild(this.backBtn);
+        $('<span>', {
+            class: 'back-btn',
+            text: 'Back to menu',
+        }).appendTo('body');
+
+        this.backBtn = $('.back-btn')[0];
 
 
-        this.counter = document.createElement('div');
-        this.counter.classList.add('counter');
-        this.counter.innerHTML = 0;
-        document.querySelector('body').appendChild(this.counter);
+        $('<div>', {
+            class: 'counter',
+            text: 0,
+        }).appendTo('body');
+
+        this.counter = $('.counter')[0];
 
 
 
-        this.container = document.createElement('div');
-        this.container.classList.add('container');
-        document.querySelector('body').appendChild(this.container);
+        $('<div>', {
+            class: 'container',
+        }).appendTo('body');
+
+        this.container = $('.container')[0];
 
 
-        this.canvas = document.createElement('canvas');
-        this.canvas.classList.add('canvas')
+        // this.canvas = document.createElement('canvas');
+        // this.canvas.classList.add('canvas')
+        // this.canvas.width = this.width;
+        // this.canvas.height = this.height;
+        // this.container.appendChild(this.canvas);
+        // this.ctx = this.canvas.getContext('2d');
+        
+        $('<canvas>', {
+            class: 'canvas',
+        }).appendTo(this.container);
+
+
+        this.canvas = $('.canvas')[0];
+
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-        this.container.appendChild(this.canvas);
+
+
         this.ctx = this.canvas.getContext('2d');
+
+
 
         
     }
@@ -81,7 +102,7 @@ export class Game {
 
     clearBody()
     {
-        document.querySelector('body').innerHTML = '';
+        $('body').html('');
     }
 
     changeParams(params) {
@@ -223,7 +244,7 @@ export class Game {
         const vertical = [87, 83];
         const horizontal = [68, 65];
     
-        window.addEventListener('keydown', (e) => {
+        $(window).on('keydown', (e) => {
             if ((this.key === 87 || this.key === 83) && 
             this.arrY[this.arrY.length - 1] != this.arrY[this.arrY.length - 2])
             {
@@ -302,9 +323,12 @@ export class Game {
 
         this.clearBody();
 
-        this.container = document.createElement('div');
-        this.container.classList.add('container');
-        document.querySelector('body').appendChild(this.container);
+
+        $('<div>',{
+            class: 'container',
+        }).appendTo('body');
+
+        this.container = $('.container')[0];
 
         this.createResultScreen();
     }

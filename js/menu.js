@@ -12,13 +12,9 @@ class Menu {
         $('body').html('');
         
         $('<div class = "menu-container"></div>').appendTo('body');
-        
-        // this.container = document.createElement('div');
-        // this.container.classList.add('menu-container');
+
 
         this.container = $('.menu-container')[0];
-
-        // document.querySelector('body').appendChild(this.container);
 
         for (let i = 0; i < items.length; i++)
         {
@@ -28,11 +24,6 @@ class Menu {
                 text: items[i].toUpperCase(),
             }).appendTo(this.container);
 
-            // let item = document.createElement('div');
-            // item.classList.add('menu-item');
-            // item.innerHTML = items[i].toUpperCase();
-            // item.style.height = 100 / items.length + '%';
-            // this.container.appendChild(item);
         }
     }
 
