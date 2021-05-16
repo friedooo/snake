@@ -29,6 +29,7 @@ export class Game {
         this.speedChangeStep = 5;
         this.speed = 150;
         this.speedFactor = 5000;
+        this.gameOverFlag = false;
 
     }
 
@@ -299,9 +300,11 @@ export class Game {
     isCrash() {
         for (let i = 0; i < this.arrX.length; i++)
         {
-            if (this.arrX[i] === this.x && this.arrY[i] === this.y)
+            if (this.arrX[i] === this.x && this.arrY[i] === this.y && !this.gameOverFlag)
             {
+                this.gameOverFlag = true;
                 this.gameOver();
+                console.log('gamover');
             }
         }
     }
@@ -310,9 +313,11 @@ export class Game {
 
         this.container.innerHTML = '';
         this.container.style.display = 'none';
+      
 
         this.counter.innerHTML = '';
         this.counter.style.display = 'none';
+      
 
 
         this.statistics = {

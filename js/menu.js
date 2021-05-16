@@ -114,8 +114,10 @@ class Menu {
     }
 
     clearGameField() {
-        document.querySelector('body').removeChild(document.querySelector('.container'));
-        document.querySelector('body').removeChild(document.querySelector('.counter'));
+        // document.querySelector('body').removeChild(document.querySelector('.container'));
+        // document.querySelector('body').removeChild(document.querySelector('.counter'));
+        document.querySelector('.container').remove(); //я добавил эту ебанину и ошибка прошла (ошибка об удалении поля)
+        document.querySelector('.counter').remove();
     }
 
 }
