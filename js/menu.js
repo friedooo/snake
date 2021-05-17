@@ -39,7 +39,6 @@ class Menu {
     }
 
     createBackBtn() {
-
         if (this.backBtn) {
             this.backBtn.remove();
         }
@@ -49,7 +48,15 @@ class Menu {
         this.backBtn.innerHTML = 'Back to menu';
         this.backBtn.style.display = 'none';
         document.querySelector('body').appendChild(this.backBtn);  
+    }
 
+    createLangSwitcher() {
+        if (this.langSwitcher) {
+            this.langSwitcher.remove();
+        }
+
+        this.langSwitcher = document.createElement()
+        
     }
 
     menuEventHandler() {

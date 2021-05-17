@@ -35,20 +35,16 @@ export class Game {
 
     createField(){
 
-        $('<div>', {
-            class: 'counter',
-            text: 0,
-        }).appendTo('body');
 
-        this.counter = $('.counter')[0];
-
+        this.counter = document.createElement('div');
+        this.counter.classList.add('counter');
+        this.counter.innerHTML = 0;
+        document.querySelector('body').appendChild(this.counter);
 
 
-        $('<div>', {
-            class: 'container',
-        }).appendTo('body');
-
-        this.container = $('.container')[0];
+        this.container = document.createElement('div');
+        this.container.classList.add('container');
+        document.querySelector('body').appendChild(this.container);
 
 
         // this.canvas = document.createElement('canvas');
@@ -58,12 +54,10 @@ export class Game {
         // this.container.appendChild(this.canvas);
         // this.ctx = this.canvas.getContext('2d');
         
-        $('<canvas>', {
-            class: 'canvas',
-        }).appendTo(this.container);
 
-
-        this.canvas = $('.canvas')[0];
+        this.canvas = document.createElement('canvas');
+        this.canvas.classList.add('canvas');
+        this.container.appendChild(this.canvas);
 
         this.canvas.width = this.width;
         this.canvas.height = this.height;
@@ -93,13 +87,7 @@ export class Game {
         // this.ctx.stroke();
     }
 
-    clearBody()
-    {
-        $('body').html('');
-    }
-
     changeParams(params) {
-        //this.clearBody();
         for (let param of params)
         {
             if (param.key === 'width')
@@ -237,7 +225,8 @@ export class Game {
         const vertical = [87, 83];
         const horizontal = [68, 65];
     
-        $(window).on('keydown', (e) => {
+
+        window.addEventListener('keydown', (e) => {
             if ((this.key === 87 || this.key === 83) && 
             this.arrY[this.arrY.length - 1] != this.arrY[this.arrY.length - 2])
             {
@@ -255,7 +244,7 @@ export class Game {
                     this.key = e.which;
                 }
             }
-        });  
+        });
     }
 
 
@@ -354,7 +343,6 @@ export class Game {
     }
 
     startGame() {
-        //this.clearBody();
         document.querySelector('.menu-container').style.display = 'none';
 
         this.createField();
