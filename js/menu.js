@@ -13,10 +13,6 @@ class Menu {
         //----- хз че это (без него работает), но на всякий случай
         // пусть пока здесь побудет  ------
         //$('body').html('');
-        
-
-        // $('<div class = "menu-container"></div>').appendTo('body');
-        // this.container = $('.menu-container')[0];
 
         this.container = document.createElement('div');
         this.container.classList.add('menu-container');
@@ -24,11 +20,6 @@ class Menu {
 
         for (let i = 0; i < items.length; i++)
         {
-            // $('<div>', {
-            //     class: 'menu-item',
-            //     height: 100/ items.length + '%',
-            //     text: items[i].toUpperCase(),
-            // }).appendTo(this.container);
 
             let elem = document.createElement('div');
             elem.classList.add('menu-item');
