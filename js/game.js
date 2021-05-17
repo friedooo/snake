@@ -322,7 +322,7 @@ export class Game {
 
         this.statistics = {
             'count' : this.count,
-            'speed': this.speed,
+            'speed': this.speed.toFixed(1),
             'length': this.snakeLength,
             'time' : 0};
 
