@@ -17,9 +17,6 @@ class Menu {
             if (this.container) {
                 this.container.remove();
             }
-            if (this.backBtn) {
-                this.backBtn.remove();
-            }
 
             this.container = document.createElement('div');
             this.container.classList.add('menu-container');
@@ -37,14 +34,22 @@ class Menu {
             }
 
             this.createResultScreen();
+            this.createBackBtn();
 
+    }
 
-            this.backBtn = document.createElement('span');
-            this.backBtn.classList.add('back-btn');
-            this.backBtn.innerHTML = 'Back to menu';
-            this.backBtn.style.display = 'none';
-            document.querySelector('body').appendChild(this.backBtn);
-        
+    createBackBtn() {
+
+        if (this.backBtn) {
+            this.backBtn.remove();
+        }
+
+        this.backBtn = document.createElement('span');
+        this.backBtn.classList.add('back-btn');
+        this.backBtn.innerHTML = 'Back to menu';
+        this.backBtn.style.display = 'none';
+        document.querySelector('body').appendChild(this.backBtn);  
+
     }
 
     menuEventHandler() {
