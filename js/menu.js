@@ -14,30 +14,34 @@ class Menu {
         // пусть пока здесь побудет  ------
         //$('body').html('');
 
-        this.container = document.createElement('div');
-        this.container.classList.add('menu-container');
-        document.querySelector('body').appendChild(this.container);
+            if (this.container) {
+                this.container.remove();
+            }
 
-        for (let i = 0; i < items.length; i++)
-        {
+            this.container = document.createElement('div');
+            this.container.classList.add('menu-container');
+            document.querySelector('body').appendChild(this.container);
 
-            let elem = document.createElement('div');
-            elem.classList.add('menu-item');
-            elem.style.height = 100 / items.length + '%';
-            elem.innerHTML = items[i].toUpperCase();
-            this.container.appendChild(elem);
+            for (let i = 0; i < items.length; i++)
+            {
 
-        }
+                let elem = document.createElement('div');
+                elem.classList.add('menu-item');
+                elem.style.height = 100 / items.length + '%';
+                elem.innerHTML = items[i].toUpperCase();
+                this.container.appendChild(elem);
 
-        this.createResultScreen();
+            }
+
+            this.createResultScreen();
 
 
-        this.backBtn = document.createElement('span');
-        this.backBtn.classList.add('back-btn');
-        this.backBtn.innerHTML = 'Back to menu';
-        this.backBtn.style.display = 'none';
-        document.querySelector('body').appendChild(this.backBtn);
-
+            this.backBtn = document.createElement('span');
+            this.backBtn.classList.add('back-btn');
+            this.backBtn.innerHTML = 'Back to menu';
+            this.backBtn.style.display = 'none';
+            document.querySelector('body').appendChild(this.backBtn);
+        
     }
 
     menuEventHandler() {
@@ -45,6 +49,7 @@ class Menu {
         window.addEventListener('click', (event) => {
             if (event.target.innerHTML.toLowerCase() === 'start game') {
                 this.startGameFunc();
+                console.log(1);
                 this.backBtn.style.display = 'inline';
             }
         })
