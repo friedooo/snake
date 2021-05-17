@@ -74,7 +74,7 @@ class Menu {
 
 
     startGameFunc() {
-        const snake = new Game(600,600, 1024);
+        const snake = new Game(700,700, 256);
         snake.startGame();
         this.backBtn.addEventListener('click', () => {
             this.createMenu(DATA.mainMenu);
