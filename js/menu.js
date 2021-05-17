@@ -17,6 +17,9 @@ class Menu {
             if (this.container) {
                 this.container.remove();
             }
+            if (this.backBtn) {
+                this.backBtn.remove();
+            }
 
             this.container = document.createElement('div');
             this.container.classList.add('menu-container');
