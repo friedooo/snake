@@ -1,14 +1,19 @@
-export {DATA, Menu};
+export {ENGDATA, Menu};
 import {Game} from './game.js'
 
 
-const DATA = {'mainMenu' :
-['start game', 'continue', 'mods', 'settings', 'hightscores']};
+const ENGDATA = {'mainMenu' :
+    ['start game', 'continue', 'mods', 'settings', 'hightscores']};
 
+const RUDATA = {'mainMenu' :
+    ['начать игру', 'продолжить', 'моды', 'настройки', 'рекорды']
+}
+
+const LANG = ['eng', 'ru'];
 
 class Menu {
 
-    createMenu(items) {
+    createMenu() {
 
         //----- хз че это (без него работает), но на всякий случай
         // пусть пока здесь побудет  ------
@@ -24,19 +29,33 @@ class Menu {
             this.container.classList.add('menu-container');
             document.querySelector('body').appendChild(this.container);
 
-            for (let i = 0; i < items.length; i++)
-            {
 
+            let langItems;
+
+            switch (localStorage.getItem('lang')) {
+                case 'eng': {
+                    langItems = ENGDATA.mainMenu;
+                    break;
+                }
+                case 'ru': {
+                    langItems = RUDATA.mainMenu;
+                    break;
+                }
+            }
+
+            for (let i = 0; i < langItems.length; i++)
+            {
                 let elem = document.createElement('div');
                 elem.classList.add('menu-item');
-                elem.style.height = 100 / items.length + '%';
-                elem.innerHTML = items[i].toUpperCase();
+                elem.style.height = 100 / langItems.length + '%';
+                elem.innerHTML = langItems[i].toUpperCase();
                 this.container.appendChild(elem);
 
             }
 
             this.createResultScreen();
             this.createBackBtn();
+            this.createLangSwitcher();
 
     }
 
@@ -52,13 +71,51 @@ class Menu {
         document.querySelector('body').appendChild(this.backBtn);  
     }
 
+    langSwitch(e) {
+        switch (e.target.value) {
+            case 'eng': 
+                document.querySelectorAll('.menu-item').forEach((elem, i) => {
+                    elem.innerHTML = ENGDATA.mainMenu[i].toUpperCase();
+                })
+                localStorage.setItem('lang', 'eng')
+                break;
+            case 'ru':
+                document.querySelectorAll('.menu-item').forEach((elem, i) => {
+                    elem.innerHTML = RUDATA.mainMenu[i].toUpperCase();
+                })
+                localStorage.setItem('lang', 'ru')
+                break;
+        }
+
+
+    }
+
     createLangSwitcher() {
         if (this.langSwitcher) {
             this.langSwitcher.remove();
         }
 
-        this.langSwitcher = document.createElement()
-        
+        this.langSwitcher = document.createElement('select');
+        this.langSwitcher.name = "language";
+        this.langSwitcher.classList.add('lang-switcher');
+
+        let flagsArr = ['flag', 'flag-us', 'flag', 'flag-ru'];
+
+        LANG.forEach((e, index) => {
+            let lang = document.createElement('option');
+            
+            lang.innerHTML = e;
+
+            if (lang.innerHTML === localStorage.getItem('lang')) {
+                lang.selected = true;
+            }
+
+            this.langSwitcher.appendChild(lang);
+            
+        })
+
+        this.langSwitcher.addEventListener('change', this.langSwitch);
+        document.querySelector('body').appendChild(this.langSwitcher);  
     }
 
     menuEventHandler() {
@@ -77,7 +134,7 @@ class Menu {
         const snake = new Game(700,700, 256);
         snake.startGame();
         this.backBtn.addEventListener('click', () => {
-            this.createMenu(DATA.mainMenu);
+            this.createMenu(ENGDATA.mainMenu);
             this.clearGameField();
             this.backBtn.style.display = 'none';
         })

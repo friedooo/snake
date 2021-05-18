@@ -64,6 +64,15 @@ body {
     cursor: pointer;
 }
 
+.lang-switcher {
+    position: absolute;
+    top: 1%;
+
+    left: 90%;
+
+    cursor: pointer;
+}
+
 
 
 .back-btn:hover {

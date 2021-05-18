@@ -1,4 +1,4 @@
-import {DATA, Menu} from './menu.js';
+import {ENGDATA, Menu} from './menu.js';
 
 export class Game {
     constructor(height, width, cells) {
