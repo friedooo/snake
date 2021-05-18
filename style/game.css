@@ -21,11 +21,13 @@
     top: 10%;
     display: flex;
     justify-content: center;
+    color: red;
     font-family: "digital-7 (italic)";
     font-size: 50px;
 }
 
 .canvas {
-    background: rgb(210, 210, 233);
+    background: black;
 }
+
 

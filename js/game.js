@@ -50,10 +50,8 @@ export class Game {
 
 
         this.ctx = this.canvas.getContext('2d');
-
-
-
-        
+        this.ctx.strokeStyle = 'rgb(231, 215, 215)';
+        this.ctx.fillStyle = 'blue';
     }
 
     fillCells() {
@@ -88,7 +86,6 @@ export class Game {
     }
 
 
-    
     
     createSnake() {
         let startPoint = Math.floor(Math.sqrt(this.cells)/2)*this.size;

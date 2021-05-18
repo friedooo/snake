@@ -49,12 +49,11 @@ body {
     font-family: "digital-7 (italic)";
     font-size: 3rem;
     color: white;
-    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
 
 .menu-item:hover {
     color: red;
-
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
 
 
@@ -66,9 +65,14 @@ body {
     font-weight: 500;
     letter-spacing: 1px;
     font-size: 24px;
-    color: rgb(29, 29, 59);
+    color: white;
 
     cursor: pointer;
+}
+
+.back-btn:hover {
+    color: red;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
 
 .lang-switcher {
@@ -82,11 +86,6 @@ body {
 
 
 
-.back-btn:hover {
-    color: rgb(224, 61, 88)
-}
-
-
 
 .result-screen {
     position: fixed;
@@ -94,8 +93,8 @@ body {
     width: 100%;
     border: 1px solid black;
 
-    background-color: #f9f9f9;
-    background-image:linear-gradient(#4C596C, transparent 1px);
+    background-color: black;
+    /* background-image:linear-gradient(#4C596C, transparent 1px); */
     background-size: 1.5em 1.5em;  
     box-shadow: 1px 1px 2px rgba(0,0,0,.2), -1px -1px 2px rgba(0,0,0,.2);
 }
@@ -104,6 +103,7 @@ body {
 .result-item {
     display: flex;
     justify-content: space-between;  
+    color: red;
 }
 
 .result-item > div {
@@ -133,68 +133,15 @@ body {
     position: relative;
     cursor: pointer;
     color: white;
-    background: var(--bgr);
-    height: calc(1 * var(--height));
-    width: calc(2 * 0.866 * var(--height));
-    box-shadow: 0.5em 0.5em 0.5em lightgrey;
-    transition: box-shadow ease 0.1s;
-    z-index: 9;
+
+    font-size: 3rem;
+    font-family: "digital-7 (italic)";
+
 }
 
-.toMenu:after, 
-.toMenu:before{
-    content: '';
-    position: relative;
-    transition: all ease-in-out 0.1s;
-    top: 0px; left: 0px;
-    height: calc(1 * var(--height));
-    width: calc(2 * 0.866 * var(--height));
-    background: var(--bgr);
-    opacity: 0;
-    z-index: -5;
-}
 
-.toMenu:hover{
-    transition: box-shadow linear 0.1s;
-    box-shadow: none;
-}
-.toMenu:after{
-    transform: rotate(60deg) translateX(calc(-2 * var(--height)));
-}
 
-.toMenu:before{
-    transform: rotate(-60deg) translateX(calc(2 * var(--height)));
-    transition-delay: 0.1s;
-}
-
-.toMenu:hover:after,
-.toMenu:hover:before{
-    content: '';
-    position: absolute;
-    top: 0px; left: 0px;
-    transition: all ease-in-out .2s;
-    height: calc(1 * var(--height));
-    width: calc(2 * 0.866 * var(--height));
-    background: var(--bgr);
-    opacity: 1;
-    z-index: -5;
-}
-
-.toMenu:hover:after{
-    transform: rotate(60deg) translateX(0);
-    
-}
-
-.toMenu:hover:before{
-    transform:  rotateZ(-60deg) translateX(0px);
-    transition-delay: 0.1s;
-}
-
-.toMenu:active:before,
-.toMenu:active:after{
-    transform: rotateZ(0deg);
-}
-
-.toMenu:active:before{
-    transition-delay: .1s;
+.toMenu:hover {
+    color: red;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
