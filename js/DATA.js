@@ -1,22 +1,18 @@
 export default {
-    "lang": {
-        "eng": {
-            "mainMenu": [
+    "mainMenu": {
+           "eng": [
                 "start game",
                 "continue",
                 "mods",
                 "settings",
-                "hightscores"
-            ]
-        },
-        "ru": {
-            "mainMenu": [
+                "hightscores"],
+
+           "ru": [
                 "начать игру",
                 "продолжить",
                 "моды",
                 "настройки",
                 "рекорды"
             ]
-        }
-    }
+   }
 }

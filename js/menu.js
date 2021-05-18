@@ -1,15 +1,6 @@
-export {ENGDATA, Menu};
+export { Menu };
 import {Game} from './game.js'
 
-
-const ENGDATA = {'mainMenu' :
-    ['start game', 'continue', 'mods', 'settings', 'hightscores']};
-
-const RUDATA = {'mainMenu' :
-    ['начать игру', 'продолжить', 'моды', 'настройки', 'рекорды']
-}
-
-const LANG = ['eng', 'ru'];
 
 class Menu {
 
@@ -57,11 +48,11 @@ class Menu {
         let langItems;
         switch (localStorage.getItem('lang')) {
             case 'eng': {
-                langItems = ENGDATA.mainMenu;
+                langItems = this.data.mainMenu.eng;
                 break;
             }
             case 'ru': {
-                langItems = RUDATA.mainMenu;
+                langItems = this.data.mainMenu.ru;
                 break;
             }
         }
@@ -77,17 +68,17 @@ class Menu {
         }
     }
 
-    langSwitch(e) {
+    langSwitch = (e) => {
         switch (e.target.value) {
             case 'eng': 
                 document.querySelectorAll('.menu-item').forEach((elem, i) => {
-                    elem.innerHTML = ENGDATA.mainMenu[i].toUpperCase();
+                    elem.innerHTML = this.data.mainMenu.eng[i].toUpperCase();
                 })
                 localStorage.setItem('lang', 'eng')
                 break;
             case 'ru':
                 document.querySelectorAll('.menu-item').forEach((elem, i) => {
-                    elem.innerHTML = RUDATA.mainMenu[i].toUpperCase();
+                    elem.innerHTML = this.data.mainMenu.ru[i].toUpperCase();
                 })
                 localStorage.setItem('lang', 'ru')
                 break;
@@ -107,18 +98,19 @@ class Menu {
 
         let flagsArr = ['flag', 'flag-us', 'flag', 'flag-ru'];
 
-        LANG.forEach((e, index) => {
+        for (let key in this.data.mainMenu) {
             let lang = document.createElement('option');
             
-            lang.innerHTML = e;
+            lang.innerHTML = key;
 
             if (lang.innerHTML === localStorage.getItem('lang')) {
                 lang.selected = true;
             }
 
-            this.langSwitcher.appendChild(lang);
-            
-        })
+            this.langSwitcher.appendChild(lang); 
+        }
+
+
 
         this.langSwitcher.addEventListener('change', this.langSwitch);
         document.querySelector('body').appendChild(this.langSwitcher);  
@@ -127,9 +119,9 @@ class Menu {
     menuEventHandler() {
   
         window.addEventListener('click', (event) => {
-            if (event.target.innerHTML.toLowerCase() === 'start game') {
-                this.startGameFunc();
-                console.log(1);
+
+            if (event.target.innerHTML.toLowerCase() === this.data.mainMenu[localStorage.getItem('lang')][0]) {
+                this.startGameFunc();;
                 this.backBtn.style.display = 'inline';
             }
         })
@@ -140,7 +132,7 @@ class Menu {
         const snake = new Game(700,700, 256);
         snake.startGame();
         this.backBtn.addEventListener('click', () => {
-            this.createMenu(ENGDATA.mainMenu);
+            this.createMenu();
             this.clearGameField();
             this.backBtn.style.display = 'none';
         })
