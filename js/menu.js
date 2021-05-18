@@ -13,6 +13,10 @@ const LANG = ['eng', 'ru'];
 
 class Menu {
 
+    constructor(DATA) {
+        this.data = DATA;
+    }
+
     createMenu() {
 
         //----- хз че это (без него работает), но на всякий случай
@@ -28,31 +32,9 @@ class Menu {
             this.container = document.createElement('div');
             this.container.classList.add('menu-container');
             document.querySelector('body').appendChild(this.container);
+           
 
-
-            let langItems;
-
-            switch (localStorage.getItem('lang')) {
-                case 'eng': {
-                    langItems = ENGDATA.mainMenu;
-                    break;
-                }
-                case 'ru': {
-                    langItems = RUDATA.mainMenu;
-                    break;
-                }
-            }
-
-            for (let i = 0; i < langItems.length; i++)
-            {
-                let elem = document.createElement('div');
-                elem.classList.add('menu-item');
-                elem.style.height = 100 / langItems.length + '%';
-                elem.innerHTML = langItems[i].toUpperCase();
-                this.container.appendChild(elem);
-
-            }
-
+            this.initLangSwitch();
             this.createResultScreen();
             this.createBackBtn();
             this.createLangSwitcher();
@@ -69,6 +51,30 @@ class Menu {
         this.backBtn.innerHTML = 'Back to menu';
         this.backBtn.style.display = 'none';
         document.querySelector('body').appendChild(this.backBtn);  
+    }
+
+    initLangSwitch() {
+        let langItems;
+        switch (localStorage.getItem('lang')) {
+            case 'eng': {
+                langItems = ENGDATA.mainMenu;
+                break;
+            }
+            case 'ru': {
+                langItems = RUDATA.mainMenu;
+                break;
+            }
+        }
+
+        for (let i = 0; i < langItems.length; i++)
+        {
+            let elem = document.createElement('div');
+            elem.classList.add('menu-item');
+            elem.style.height = 100 / langItems.length + '%';
+            elem.innerHTML = langItems[i].toUpperCase();
+            this.container.appendChild(elem);
+
+        }
     }
 
     langSwitch(e) {

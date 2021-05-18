@@ -1,5 +1,3 @@
-import {ENGDATA, Menu} from './menu.js';
-
 export class Game {
     constructor(height, width, cells) {
         this.height = height;

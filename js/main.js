@@ -1,5 +1,5 @@
-import {Game} from './game.js'
-import {ENGDATA, Menu} from './menu.js'
+
+import {Menu} from './menu.js'
 import DATA from './DATA.js'
 
 (function() {
@@ -7,10 +7,10 @@ import DATA from './DATA.js'
         localStorage.setItem('lang', 'eng');
     }
     console.log(1);
-})
+})()
 
 
-let menu = new Menu();
+let menu = new Menu(DATA);
 menu.createMenu();
 menu.menuEventHandler();
 
