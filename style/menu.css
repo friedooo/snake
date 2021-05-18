@@ -1,10 +1,20 @@
+@font-face {
+    font-family: "digital-7 (italic)";
+    src: url("../src/fonts/digital-7 (italic).ttf") format("truetype"); 
+    font-style: italic; 
+    font-weight: normal;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
+
+
 * {
     font-size: 14px;
     font-family: 'Lato',sans-serif;
 }
 
 body {
-    background-color: #c0cbe4;
+    background-color: black !important;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,300,100italic');
@@ -13,13 +23,14 @@ body {
     position: relative;
     top: -50%;
     height: 50%;
-    width: 40%;
+    width: 70%;
     margin: 0 auto;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     
 
     transform: translateY(130%);
@@ -29,25 +40,21 @@ body {
 
 .menu-item {
     display: flex;
-    width: 100%;
+    width: 33%;
     
     justify-content: center;
     align-items: center;
     cursor: pointer;
 
-    border: 1px solid rgb(139, 138, 194);
-
-    font-size: 1rem;
-    color: black;
-    transition: all 0.8s cubic-bezier(.2, 0, 0, 1);
+    font-family: "digital-7 (italic)";
+    font-size: 3rem;
+    color: white;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
 
 .menu-item:hover {
-    background: radial-gradient(#f0cbcb, #2F8FD8);
-    
-    width: 80%;
-    border-radius: 20%;
-    font-size: 1.5rem;
+    color: red;
+
 }
 
 

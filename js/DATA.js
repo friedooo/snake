@@ -3,6 +3,7 @@ export default {
            "eng": [
                 "start game",
                 "continue",
+                "download game",
                 "mods",
                 "settings",
                 "hightscores"],
@@ -10,6 +11,7 @@ export default {
            "ru": [
                 "начать игру",
                 "продолжить",
+                "загрузить игру",
                 "моды",
                 "настройки",
                 "рекорды"

@@ -307,7 +307,7 @@ export class Game {
 
     fillResultScreen() {
 
-        document.querySelector('.menu-container').style.display = 'block';
+        document.querySelector('.menu-container').style.display = 'flex';
         this.resultScreen = document.querySelector('.result-screen');
         this.resultScreen.style.display = 'block';
 
