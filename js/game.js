@@ -51,7 +51,7 @@ export class Game {
 
         this.ctx = this.canvas.getContext('2d');
         this.ctx.strokeStyle = 'rgb(231, 215, 215)';
-        this.ctx.fillStyle = 'blue';
+        this.ctx.fillStyle = 'rgb(67, 67, 216)';
     }
 
     fillCells() {
