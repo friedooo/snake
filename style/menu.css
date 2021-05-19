@@ -68,6 +68,7 @@ body {
     color: white;
 
     cursor: pointer;
+    z-index: 1000;
 }
 
 .back-btn:hover {
