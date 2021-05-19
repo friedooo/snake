@@ -6,6 +6,7 @@ class Menu {
 
     constructor(DATA) {
         this.data = DATA;
+        this.cellsAmount = localStorage.getItem('cells');
     }
 
     createMenu() {
@@ -46,15 +47,20 @@ class Menu {
         document.querySelector('body').appendChild(this.backBtn);  
     }
 
+    createSettings() {
+        
+    }
+    
+
     initLangSwitch() {
         let langItems;
         switch (localStorage.getItem('lang')) {
             case 'eng': {
-                langItems = this.data.mainMenu.eng;
+                langItems = this.data[localStorage.getItem('stage')].eng;
                 break;
             }
             case 'ru': {
-                langItems = this.data.mainMenu.ru;
+                langItems = this.data[localStorage.getItem('stage')].ru;
                 break;
             }
         }
@@ -131,12 +137,11 @@ class Menu {
     }
 
 
-    startGameFunc() {
+    startGameFunc = () => {
         localStorage.setItem('stage', 'game');
         console.log(localStorage.getItem('stage'));
 
-
-        const snake = new Game(700,700, 256);
+        const snake = new Game(700, 700, Number(this.cellsAmount));
         snake.startGame();
         this.backBtn.addEventListener('click', () => {
             this.createMenu();

@@ -8,6 +8,8 @@ import DATA from './DATA.js'
     }
 
     localStorage.setItem('stage', 'mainMenu');
+
+    localStorage.setItem('cells', 256);
 })()
 
 
