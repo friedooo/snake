@@ -6,7 +6,7 @@ export default {
                 "download game",
                 "mods",
                 "settings",
-                "hightscores"],
+                "highscores"],
 
            "ru": [
                 "начать игру",

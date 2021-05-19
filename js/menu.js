@@ -31,8 +31,6 @@ class Menu {
             this.initLangSwitch();
             this.createResultScreen();
             this.createBackBtn();
-            this.createLangSwitcher();
-
     }
 
     createBackBtn() {
@@ -48,7 +46,13 @@ class Menu {
     }
 
     createSettings() {
-        
+        this.settings = document.createElement('div');
+        this.settings.classList.add('settings');
+        this.container.appendChild(this.settings);
+
+        this.container.classList.add('menu-container-border');
+        this.createLangSwitcher(this.settings);
+        console.log(1);
     }
     
 
@@ -95,16 +99,15 @@ class Menu {
 
     }
 
-    createLangSwitcher() {
+    createLangSwitcher(container) {
         if (this.langSwitcher) {
             this.langSwitcher.remove();
         }
 
+
         this.langSwitcher = document.createElement('select');
         this.langSwitcher.name = "language";
         this.langSwitcher.classList.add('lang-switcher');
-
-        let flagsArr = ['flag', 'flag-us', 'flag', 'flag-ru'];
 
         for (let key in this.data.mainMenu) {
             let lang = document.createElement('option');
@@ -119,7 +122,7 @@ class Menu {
         }
 
         this.langSwitcher.addEventListener('change', this.langSwitch);
-        document.querySelector('body').appendChild(this.langSwitcher);  
+        container.appendChild(this.langSwitcher);  
     }
 
     menuEventHandler() {
@@ -132,6 +135,7 @@ class Menu {
             }
             else if (event.target.innerHTML.toLowerCase() === this.data.mainMenu[localStorage.getItem('lang')][4]) {
                 this.container.innerHTML = '';
+                this.createSettings();
             }
         })
     }
