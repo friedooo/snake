@@ -303,6 +303,8 @@ export class Game {
 
 
     fillResultScreen() {
+        localStorage.setItem('stage', 'resultScreen');
+        console.log(localStorage.getItem('stage'));
 
         document.querySelector('.menu-container').style.display = 'flex';
         this.resultScreen = document.querySelector('.result-screen');

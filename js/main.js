@@ -6,7 +6,8 @@ import DATA from './DATA.js'
     if (!localStorage.getItem('lang')) {
         localStorage.setItem('lang', 'eng');
     }
-    console.log(1);
+
+    localStorage.setItem('stage', 'mainMenu');
 })()
 
 

@@ -9,6 +9,8 @@ class Menu {
     }
 
     createMenu() {
+        localStorage.setItem('stage', 'mainMenu');
+        console.log(localStorage.getItem('stage'));
 
         //----- хз че это (без него работает), но на всякий случай
         // пусть пока здесь побудет  ------
@@ -110,8 +112,6 @@ class Menu {
             this.langSwitcher.appendChild(lang); 
         }
 
-
-
         this.langSwitcher.addEventListener('change', this.langSwitch);
         document.querySelector('body').appendChild(this.langSwitcher);  
     }
@@ -124,11 +124,18 @@ class Menu {
                 this.startGameFunc();;
                 this.backBtn.style.display = 'inline';
             }
+            else if (event.target.innerHTML.toLowerCase() === this.data.mainMenu[localStorage.getItem('lang')][4]) {
+                this.container.innerHTML = '';
+            }
         })
     }
 
 
     startGameFunc() {
+        localStorage.setItem('stage', 'game');
+        console.log(localStorage.getItem('stage'));
+
+
         const snake = new Game(700,700, 256);
         snake.startGame();
         this.backBtn.addEventListener('click', () => {
@@ -139,6 +146,7 @@ class Menu {
     } 
 
     createResultScreen() {
+
         this.resultScreen = document.createElement('div');
         this.resultScreen.classList.add('result-screen');
         this.container.appendChild(this.resultScreen);
@@ -184,6 +192,9 @@ class Menu {
             document.querySelectorAll('.menu-item').forEach((e) => {
                 e.style.display = 'flex';
             })
+
+            localStorage.setItem('stage', 'mainMenu');
+            console.log(localStorage.getItem('stage'));
 
             this.clearGameField();
        });

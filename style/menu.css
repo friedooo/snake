@@ -5,7 +5,12 @@
     font-weight: normal;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
+@font-face {
+    font-family: "Yahfie Heavy";
+    src: url("../src/fonts//20686.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
 
 
 * {
@@ -17,7 +22,6 @@ body {
     background-color: black !important;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700,300,100italic');
 
 .menu-container {
     position: relative;
@@ -47,7 +51,7 @@ body {
     cursor: pointer;
 
     font-family: "digital-7 (italic)";
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
 }
 
