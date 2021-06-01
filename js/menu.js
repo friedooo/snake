@@ -46,6 +46,9 @@ class Menu {
     }
 
     createSettings() {
+        localStorage.setItem('stage', 'settings');
+        console.log(localStorage.getItem('stage'));
+
         this.settings = document.createElement('div');
         this.settings.classList.add('settings');
         this.container.appendChild(this.settings);
@@ -81,7 +84,8 @@ class Menu {
     }
 
     langSwitch = (e) => {
-        switch (e.target.value) {
+
+        switch (e.target.alt) {
             case 'eng': 
                 document.querySelectorAll('.menu-item').forEach((elem, i) => {
                     elem.innerHTML = this.data.mainMenu.eng[i].toUpperCase();
@@ -104,25 +108,36 @@ class Menu {
             this.langSwitcher.remove();
         }
 
+        let langSwitcherContainer = document.createElement('div');
+        langSwitcherContainer.classList.add('lang-switcher-container');
+        container.appendChild(langSwitcherContainer);
+        
 
         this.langSwitcher = document.createElement('select');
         this.langSwitcher.name = "language";
         this.langSwitcher.classList.add('lang-switcher');
 
-        for (let key in this.data.mainMenu) {
-            let lang = document.createElement('option');
-            
-            lang.innerHTML = key;
+        let langChoiceText = document.createElement('div');
+        langChoiceText.classList.add('lang-choice-text');
+        langChoiceText.innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0];
+        langSwitcherContainer.appendChild(langChoiceText);
 
-            if (lang.innerHTML === localStorage.getItem('lang')) {
-                lang.selected = true;
-            }
 
-            this.langSwitcher.appendChild(lang); 
+        let flagContainer = document.createElement('div');
+        flagContainer.classList.add('flag-container');
+        langSwitcherContainer.appendChild(flagContainer);
+
+
+        for (let url of this.data.flags) {
+            let img = document.createElement('img');
+            img.src = url[0];
+            img.alt = url[1];
+            img.classList.add('flag');
+            img.addEventListener('click', this.langSwitch);
+            flagContainer.appendChild(img);
         }
 
-        this.langSwitcher.addEventListener('change', this.langSwitch);
-        container.appendChild(this.langSwitcher);  
+        
     }
 
     menuEventHandler() {

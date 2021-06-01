@@ -17,6 +17,18 @@ export default {
                 "рекорды"
             ]
    },
+   "settings": {
+            "eng": [
+                "language selection"
+            ],
+            "ru": [
+                "выбор языка"
+            ]
+   },
+   "flags": [
+       ["src/img/flags/russia.png", "ru"],
+       ["src/img/flags/USA.png", "eng"]
+   ],
    "gameImages" : [
     '../src/img/burger.svg',
     '../src/img/apple.svg',
