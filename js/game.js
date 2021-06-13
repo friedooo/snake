@@ -233,6 +233,22 @@ export class Game {
                     this.key = e.which;
                 }
             }
+
+            if (e.which === 32) {
+                this.pauseHandler();
+                console.log(`pause is ${localStorage.getItem('pause')}`);
+            }
+        }
+
+        pauseHandler = () => {
+            if (localStorage.getItem('pause') === 'true') {
+                localStorage.setItem('pause', 'false')
+                this.movement();
+            }
+            else {
+                localStorage.setItem('pause', 'true')
+                clearInterval(this.interval);
+            }
         }
 
 

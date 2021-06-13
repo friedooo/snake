@@ -168,6 +168,7 @@ class Menu {
 
     startGameFunc = () => {
         localStorage.setItem('stage', 'game');
+        localStorage.setItem('pause', 'false');
         console.log(localStorage.getItem('stage'));
 
         const snake = new Game(700, 700, Number(this.cellsAmount));
