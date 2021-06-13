@@ -43,6 +43,8 @@ export class Game {
 
         this.canvas = document.createElement('canvas');
         this.canvas.classList.add('canvas');
+
+
         this.container.appendChild(this.canvas);
 
         this.canvas.width = this.width;
@@ -106,11 +108,19 @@ export class Game {
         }
     }
 
+
+    keyEventAdd = () => {
+        window.addEventListener('keydown', this.keyHandler);
+    }
+
+    keyEventRemove = () => {
+        window.removeEventListener('keydown', this.keyHandler);
+    }
   
 
     startMove() { 
 
-        this.keyHandler();
+        this.keyEventAdd();
         this.foodRandSpot();
         this.x -= this.size;
        
@@ -204,12 +214,8 @@ export class Game {
         }, this.speed);   
     }
 
-    keyHandler(){
-        const vertical = [87, 83];
-        const horizontal = [68, 65];
+    keyHandler = (e) => {
     
-
-        window.addEventListener('keydown', (e) => {
             if ((this.key === 87 || this.key === 83) && 
             this.arrY[this.arrY.length - 1] != this.arrY[this.arrY.length - 2])
             {
@@ -227,8 +233,7 @@ export class Game {
                     this.key = e.which;
                 }
             }
-        });
-    }
+        }
 
 
     foodRandSpot(){
@@ -303,6 +308,8 @@ export class Game {
 
 
     fillResultScreen() {
+        this.keyEventRemove();
+
         localStorage.setItem('stage', 'resultScreen');
         console.log(localStorage.getItem('stage'));
 
