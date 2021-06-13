@@ -43,7 +43,6 @@ class Menu {
         this.backBtn.innerHTML = 'Back to menu';
         this.backBtn.style.display = 'none';
         document.querySelector('body').appendChild(this.backBtn);  
-        console.log(1);
     }
 
     createSettings() {
@@ -56,7 +55,9 @@ class Menu {
 
         this.container.classList.add('menu-container-border');
         this.createLangSwitcher(this.settings);
-        console.log(1);
+
+        this.backBtn.style.display = 'inline';
+        this.backBtnHandler();
     }
     
 
@@ -156,6 +157,14 @@ class Menu {
         })
     }
 
+    backBtnHandler = () => {
+        this.backBtn.addEventListener('click', () => {
+            this.createMenu();
+            this.clearGameField();
+            this.backBtn.style.display = 'none';
+        })
+    }
+
 
     startGameFunc = () => {
         localStorage.setItem('stage', 'game');
@@ -163,11 +172,7 @@ class Menu {
 
         const snake = new Game(700, 700, Number(this.cellsAmount));
         snake.startGame();
-        this.backBtn.addEventListener('click', () => {
-            this.createMenu();
-            this.clearGameField();
-            this.backBtn.style.display = 'none';
-        })
+        this.backBtnHandler();
     } 
 
     createResultScreen() {
@@ -228,8 +233,11 @@ class Menu {
     clearGameField() {
         // document.querySelector('body').removeChild(document.querySelector('.container'));
         // document.querySelector('body').removeChild(document.querySelector('.counter'));
-        document.querySelector('.container').remove(); //я добавил эту ебанину и ошибка прошла (ошибка об удалении поля)
-        document.querySelector('.counter').remove();
+        if (document.querySelector('.container') !== null) {
+            document.querySelector('.container').remove(); //я добавил эту ебанину и ошибка прошла (ошибка об удалении поля)
+            document.querySelector('.counter').remove();
+        }
+
     }
 
 }
