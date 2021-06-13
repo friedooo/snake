@@ -43,6 +43,7 @@ class Menu {
         this.backBtn.innerHTML = 'Back to menu';
         this.backBtn.style.display = 'none';
         document.querySelector('body').appendChild(this.backBtn);  
+        console.log(1);
     }
 
     createSettings() {
