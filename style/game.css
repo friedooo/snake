@@ -35,7 +35,28 @@
 }
 
 .pause-screen {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+
+    color: white;
+    font-family: "digital-7 (italic)";
+    font-size: 3rem;
+    border: 2px solid red;
+}
+
+.pause-screen__item {
+    font-size: 1.5rem;
+    font-family: "digital-7 (italic)";
+    cursor: pointer;
+    transition: color 1s;
+}
+
+.pause-screen__item:hover {
+    color: red;
 }
 
 
