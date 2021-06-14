@@ -243,12 +243,25 @@ export class Game {
         pauseHandler = () => {
             if (localStorage.getItem('pause') === 'true') {
                 localStorage.setItem('pause', 'false')
+                this.removePauseScreen();
                 this.movement();
             }
             else {
                 localStorage.setItem('pause', 'true')
+                this.createPauseScreen();
                 clearInterval(this.interval);
             }
+        }
+
+        createPauseScreen = () => {
+            let pauseScreen = document.createElement('div');
+            pauseScreen.innerHTML = 'Pause';
+            pauseScreen.classList.add('pause-screen');
+            this.container.appendChild(pauseScreen);
+        }
+
+        removePauseScreen = () => {
+            document.querySelector('.pause-screen').remove();
         }
 
 
