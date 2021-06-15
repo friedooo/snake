@@ -157,13 +157,6 @@ class Menu {
         })
     }
 
-    backBtnHandler = () => {
-        this.backBtn.addEventListener('click', () => {
-            this.createMenu();
-            this.clearGameField();
-            this.backBtn.style.display = 'none';
-        })
-    }
 
 
     startGameFunc = () => {
@@ -173,8 +166,21 @@ class Menu {
 
         const snake = new Game(700, 700, Number(this.cellsAmount));
         snake.startGame();
-        this.backBtnHandler();
+        this.backBtnHandler(snake.keyEventRemove);
     } 
+
+    backBtnHandler = (eventRemoveFunc) => {
+        this.backBtn.addEventListener('click',() => {
+            eventRemoveFunc();
+            this.backBtnEvent();
+        });
+    }
+
+    backBtnEvent = () => {
+        this.createMenu();
+        this.clearGameField();
+        this.backBtn.style.display = 'none';
+    }
 
     createResultScreen() {
 

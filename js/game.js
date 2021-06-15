@@ -274,7 +274,7 @@ export class Game {
             download.innerHTML = 'download';
             download.classList.add('pause-screen__item');
             pauseScreen.appendChild(download);
-            
+
             let highscores = document.createElement('div');
             highscores.innerHTML = 'highscores';
             highscores.classList.add('pause-screen__item');
@@ -283,7 +283,9 @@ export class Game {
         }
 
         removePauseScreen = () => {
-            document.querySelector('.pause-screen').remove();
+            if ( document.querySelector('.pause-screen') !== null) {
+                document.querySelector('.pause-screen').remove();
+            }
         }
 
 
@@ -354,6 +356,7 @@ export class Game {
             'length': this.snakeLength,
             'time' : 0};
 
+        this.keyEventRemove();
         this.fillResultScreen();
     }
 
