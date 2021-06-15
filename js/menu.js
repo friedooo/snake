@@ -103,6 +103,11 @@ class Menu {
         }
 
 
+        // меняем текст 'выбор языка' в settings
+        document.querySelector('.lang-choice-text').innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0];
+
+
+
     }
 
     createLangSwitcher(container) {
@@ -171,7 +176,10 @@ class Menu {
 
     backBtnHandler = (eventRemoveFunc) => {
         this.backBtn.addEventListener('click',() => {
-            eventRemoveFunc();
+            if (localStorage.getItem('stage') === 'game') { //пока что такой вот костыль
+                eventRemoveFunc();                          // потому что в settings backBtn ломается
+            }
+
             this.backBtnEvent();
         });
     }

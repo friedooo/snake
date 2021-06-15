@@ -17,6 +17,18 @@ export default {
                 "рекорды"
             ]
    },
+   "pauseScreen": {
+    "eng": [
+        "resume",
+        "save",
+        "download",
+    ],
+    "ru": [
+        "продолжить",
+        "сохранить",
+        "загрузить",
+    ]
+   },
    "settings": {
             "eng": [
                 "language selection"

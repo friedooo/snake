@@ -259,27 +259,15 @@ export class Game {
             pauseScreen.classList.add('pause-screen');
             this.container.appendChild(pauseScreen);
 
-            let resume = document.createElement('div');
-            resume.innerHTML = 'resume';
-            resume.classList.add('pause-screen__item');
-            resume.addEventListener('click', this.pauseHandler);
 
-            pauseScreen.appendChild(resume);
-            let save = document.createElement('div');
-            save.innerHTML = 'save';
-            save.classList.add('pause-screen__item');
-            pauseScreen.appendChild(save);
-
-            let download = document.createElement('div');
-            download.innerHTML = 'download';
-            download.classList.add('pause-screen__item');
-            pauseScreen.appendChild(download);
-
-            let highscores = document.createElement('div');
-            highscores.innerHTML = 'highscores';
-            highscores.classList.add('pause-screen__item');
-            pauseScreen.appendChild(highscores);
-
+            console.log(DATA.pauseScreen[localStorage.getItem('lang')]);
+            DATA.pauseScreen[localStorage.getItem('lang')].forEach((item) => {
+                let div = document.createElement('div');
+                div.innerHTML = item.toUpperCase();
+                div.classList.add('pause-screen__item');
+                div.addEventListener('click', this.pauseHandler);
+                pauseScreen.appendChild(div);
+            })
         }
 
         removePauseScreen = () => {
