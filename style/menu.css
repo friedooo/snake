@@ -1,27 +1,196 @@
+@font-face {
+    font-family: "digital-7 (italic)";
+    src: url("../src/fonts/digital-7 (italic).ttf") format("truetype"); 
+    font-style: italic; 
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Yahfie Heavy";
+    src: url("../src/fonts//20686.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+* {
+    font-size: 14px;
+    font-family: 'Lato',sans-serif;
+}
+
+body {
+    background-color: black !important;
+}
+
+
 .menu-container {
     position: relative;
     top: -50%;
     height: 50%;
-    width: 40%;
+    width: 70%;
     margin: 0 auto;
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     
-    border: 1px solid black;
 
     transform: translateY(130%);
     transition: all 1s;
 }
 
+.menu-container-border {
+    border: 1px solid red;
+}
 
-.menu-container > div {
-    width: 40%;
-    text-align: center;
+
+.menu-item {
+    display: flex;
+    width: 33%;
+    
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 
+    font-family: "digital-7 (italic)";
+    font-size: 2.5rem;
+    color: white;
+}
+
+.menu-item:hover {
+    color: red;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
+}
+
+
+.back-btn {
+    position: absolute;
+    top: 1%;
+
+    font-family: "digital-7 (italic)";
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 24px;
+    color: white;
+
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.back-btn:hover {
+    color: red;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
+}
+
+
+
+.settings {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+
+.lang-switcher-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    margin: 5%;
+}
+
+.lang-choice-text {
+    width: 40%;
+    font-family: "digital-7 (italic)";
+    color: white;
+    font-size: 2.5rem;
+}
+
+.flag-container {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.flag {
+    cursor: pointer;
+    width: 100px;
+    height: 65px;
+}
+
+.lang-switcher {
+    width: 40%;
+    height: 40px;
+    margin-top: 2rem;
+
+    cursor: pointer;
+}
+
+
+
+
+
+.result-screen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
     border: 1px solid black;
 
+    background-color: black;
+    /* background-image:linear-gradient(#4C596C, transparent 1px); */
+    background-size: 1.5em 1.5em;  
+    box-shadow: 1px 1px 2px rgba(0,0,0,.2), -1px -1px 2px rgba(0,0,0,.2);
+}
+
+
+.result-item {
+    display: flex;
+    justify-content: space-between;  
+    color: red;
+}
+
+.result-item > div {
+    font-family: "digital-7 (italic)";
+    font-size: 3rem;
+}
+
+
+
+
+
+:root{
+    --height: 3em;
+    --bgr: rgb(64, 64, 64);
+}
+
+
+.menu-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.toMenu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: white;
+
+    font-size: 3rem;
+    font-family: "digital-7 (italic)";
+
+}
+
+
+
+.toMenu:hover {
+    color: red;
+    transition: all 1.5s cubic-bezier(.2, 0, 0, 1);
 }
