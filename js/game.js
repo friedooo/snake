@@ -7,7 +7,7 @@ export class Game {
         this.cells = cells;
         this.IMAGES = DATA.gameImages;
         this.count = 0;
-        this.snakeLength = 5;
+        this.snakeLength = 3;
         this.arrX = [];
         this.arrY = [];
         this.key = 68;
@@ -261,11 +261,13 @@ export class Game {
 
 
             console.log(DATA.pauseScreen[localStorage.getItem('lang')]);
-            DATA.pauseScreen[localStorage.getItem('lang')].forEach((item) => {
+            DATA.pauseScreen[localStorage.getItem('lang')].forEach((item, i) => {
                 let div = document.createElement('div');
                 div.innerHTML = item.toUpperCase();
-                div.classList.add('pause-screen__item');
-                div.addEventListener('click', this.pauseHandler);
+                div.classList.add('pause-screen__item'); 
+                if (i === 0) {
+                    div.addEventListener('click', this.pauseHandler);
+                }
                 pauseScreen.appendChild(div);
             })
         }
