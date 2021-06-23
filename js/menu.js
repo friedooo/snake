@@ -104,7 +104,7 @@ class Menu {
 
 
         // меняем текст 'выбор языка' в settings
-        document.querySelector('.lang-choice-text').innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0];
+        document.querySelector('.lang-choice-text').innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0].toUpperCase();
 
 
 
@@ -126,7 +126,7 @@ class Menu {
 
         let langChoiceText = document.createElement('div');
         langChoiceText.classList.add('lang-choice-text');
-        langChoiceText.innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0];
+        langChoiceText.innerHTML = this.data[localStorage.getItem('stage')][localStorage.getItem('lang')][0].toUpperCase();
         langSwitcherContainer.appendChild(langChoiceText);
 
 
@@ -143,8 +143,6 @@ class Menu {
             img.addEventListener('click', this.langSwitch);
             flagContainer.appendChild(img);
         }
-
-        
     }
 
     menuEventHandler() {
